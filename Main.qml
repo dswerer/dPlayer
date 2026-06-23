@@ -409,7 +409,6 @@ ApplicationWindow {
                 }
             }
 
-            // 可选的：最大值调节滑块（若不需可删除）
             RowLayout {
                 Layout.fillWidth: true
                 Label {
@@ -501,13 +500,10 @@ ApplicationWindow {
                 color:_CSelectable
             }
 
-            // 对外暴露当前输入文本的属性（可选）
             property alias inputText: textField.text
 
-            // 信号：点击确定时发射，携带用户输入的文字
             signal textConfirmed(string text)
 
-            // 弹窗内容布局
             Column {
                 anchors.centerIn: parent
                 spacing: 12
@@ -570,32 +566,32 @@ ApplicationWindow {
                     // onClicked: samplerTextPopup.visible = true
                     onClicked: shaderSrcDialog.open()
                 }
-                Button {
-                    flat:true
-                    width: 20
-                    height: 20
-                    background: Rectangle {
-                        color: _Cbackground
-                    }
-                    contentItem: Text {
-                        font.family: "iconfont"
-                        text: "\ue620"
-                        font.pixelSize: 30
-                        color: "#FFFFFF"
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                    }
-                    onClicked:{
-                        if(shaderPopup.state===0){
-                            shaderPopup.state=1;
-                            shaderListView.childrenColor="#100000"
-                        }
-                        else{
-                            shaderPopup.state=0;
-                            shaderListView.childrenColor=_CSelectable
-                        }
-                    }
-                }
+                // Button {
+                //     flat:true
+                //     width: 20
+                //     height: 20
+                //     background: Rectangle {
+                //         color: _Cbackground
+                //     }
+                //     contentItem: Text {
+                //         font.family: "iconfont"
+                //         text: "\ue620"
+                //         font.pixelSize: 30
+                //         color: "#FFFFFF"
+                //         horizontalAlignment: Text.AlignHCenter
+                //         verticalAlignment: Text.AlignVCenter
+                //     }
+                //     onClicked:{
+                //         if(shaderPopup.state===0){
+                //             shaderPopup.state=1;
+                //             shaderListView.childrenColor="#100000"
+                //         }
+                //         else{
+                //             shaderPopup.state=0;
+                //             shaderListView.childrenColor=_CSelectable
+                //         }
+                //     }
+                // }
             }
 
             ListView {
@@ -619,6 +615,7 @@ ApplicationWindow {
                             windowManager.openShaderWindow(1,sc.ptr,shaderManager.ptr,mediaPlayer,sm.ptr,index)
                         } else {
                             // shaderManager
+                            // shaderManager.
                         }
                     }
                     background: Rectangle{
