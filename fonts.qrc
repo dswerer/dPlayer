@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/fonts">
+        <file>font/font_ali/iconfont.ttf</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>ShaderWindow.qml</file>
+    </qresource>
+    <qresource prefix="/shader">
+        <file alias="example">example.frag</file>
+    </qresource>
+</RCC>
