@@ -24,6 +24,8 @@ mat2 rotate(float a){
 #define TURB_EXP 1.4
 
 float freq = TURB_FREQ;
+mat3 E=mat3(1.);
+
 mat3 rotx = mat3(1.,0.,0.,
                 0.,0.6, -0.8, 
                 0.,0.8, 0.6);
@@ -36,14 +38,13 @@ mat3 roty = mat3(0.8, 0.,-0.6,
 mat2 rot=mat2(.6,-.8,.8,.6);
 
 vec3 torsion(vec3 pos){
-    mat3 E=mat3(1.);
     float WAVE_SPEED=TURB_SPEED;
     float WAVE_AMP=TURB_AMP;
     E*=rotx;
     E*=rotz;
     for(int i=0;i<TURB_NUM;i++){
         float phase=freq * (pos*E).y + WAVE_SPEED*m_time/500.;
-        pos+=WAVE_AMP * E[0] * sin(phase*max(min(log2(sampler_0),15.),.3)) / freq;
+        pos+=WAVE_AMP * E[0] * sin(phase*max(min(log2(sampler_0+.1)*.5,15.),.3)) / freq;
         E*=rotx;
         E*=roty;
         freq*=TURB_EXP;
@@ -82,7 +83,7 @@ float sphere(vec3 p){
 
 
 vec2 glitch(vec2 uv){
-    vec2 cell=vec2(floor(5.*(uv+vec2(1.,sin(uv.y+m_time)*0.2))*vec2(1.,2.*sin(m_time))).y);
+    vec2 cell=vec2(floor((uv+vec2(1.,sin(uv.y+m_time)*0.2))));
     vec2 offset=2.*hash22(cell+sin(m_time))-1.;
     return uv+offset*smoothstep(50.,100.,sampler_1)*.4;
 }
@@ -104,7 +105,7 @@ vec3 Image(vec2 u){
         float vol=sphere(torsion(pos));
         pos+=dir*(vol);
 
-        col+=vec3(.3,.9,1.)/vol;
+        col+=vec3(.3,.9,.4)/vol;
     }
     return col;
 }
@@ -113,9 +114,10 @@ vec3 Image(vec2 u){
 void main(){
     vec3 Col=vec3(0.);
     vec2 u=(gl_FragCoord.xy-.5*m_resolution)/m_resolution.y;
-    Col+=vec3(Image(u+glitchOffset(u,0.)).r,0.,0.);
-    Col+=vec3(0.,Image(u+glitchOffset(u,.3)).g,0.);
-    Col+=vec3(0.,0.,Image(u+glitchOffset(u,.6)).b);
+    // Col+=vec3(Image(u+glitchOffset(u,0.)).r,0.,0.);
+    // Col+=vec3(0.,Image(u+glitchOffset(u,.3)).g,0.);
+    // Col+=vec3(0.,0.,Image(u+glitchOffset(u,.6)).b);
+    Col+=Image(u);
     // Col.a=1.;
 
     Col=tanh(BRIGHTNESS*Col);
