@@ -35,8 +35,9 @@
 ### 依赖库
 - **Qt 6**（必需模块：`qt6-base`, `qt6-declarative`, `qt6-multimedia`）
 - **OpenGL** 开发库（系统自带）
-- **STFT 库**（项目内置于 `Dependencies/STFT/`，需确保已编译）
-- 
+- **dSTFT 库**（项目内置于 `Dependencies/STFT/`，需确保已编译）
+- **FFTW 库** dSTFT的依赖项
+- **libsndfile** dSTFT的依赖项
 
 ### 使用 Qt Creator 编译
 1. 打开项目文件 `visual_studio.pro`（或 `CMakeLists.txt`，如果有）。
