@@ -79,7 +79,7 @@ ApplicationWindow {
     }
     FileDialog{
         id:shaderSrcDialog
-        title:"选择片段着色器文件(glsl)"
+        title:"选择着色器文件(glsl)"
         fileMode:FileDialog.OpenFile
         nameFilters:[
             "片段着色器 (*.frag *.fsh *.fs)",
