@@ -39,14 +39,6 @@
 - **FFTW 库** dSTFT的依赖项
 - **libsndfile** dSTFT的依赖项
 
-### 使用 Qt Creator 编译
-1. 打开项目文件 `visual_studio.pro`（或 `CMakeLists.txt`，如果有）。
-2. 配置编译套件（Desktop Qt 6.x MinGW/MSVC）
-3. 确保 `Dependencies/STFT` 已正确构建并放入项目bin文件夹。
-4. 点击“构建”即可。
-
----
-
 ## 使用方法
 
 1. **启动应用**  
